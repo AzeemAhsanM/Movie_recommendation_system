@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movie Recommendation System</title>
+  <style>
+    body {
+      background-color: #111827;
+      color: #f9fafb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+    .container {
+      max-width: 720px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.25rem;
+    }
+    p.subtitle {
+      color: #9ca3af;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      margin-bottom: 1.5rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: #f9fafb;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      background-color: #2563eb;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    .error {
+      color: #f97373;
+      margin-bottom: 0.5rem;
+    }
+    ol {
+      margin-top: 0.5rem;
+      padding-left: 1.25rem;
+    }
+    li {
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Recommendation System</h1>
+    <p class="subtitle">Type a movie name and get similar movie suggestions.</p>
+
+    <form method="POST">
+      <input
+        type="text"
+        name="movie_name"
+        placeholder="Enter a movie name"
+        value="{{ movie_name }}"
+        required
+      />
+      <button type="submit">Recommend</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if recommendations %}
+      <h2>Movies suggested for you:</h2>
+      <ol>
+        {% for title in recommendations %}
+          <li>{{ title }}</li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </div>
+</body>
+</html>
