@@ -1,10 +1,10 @@
 # Movie Recommendation System 🎬
 
-A small Streamlit-based movie recommender that suggests similar movies by analyzing movie metadata (genres, keywords, tagline, cast and director) using TF–IDF and cosine similarity. The app takes a movie title as input and returns a ranked list of similar movies from the bundled dataset (`movies.csv`).
+A Flask-based movie recommender that suggests similar movies by analyzing movie metadata (genres, keywords, tagline, cast and director) using TF–IDF and cosine similarity. Enter a movie title and get a ranked list of similar movies from the bundled dataset (`movies.csv`).
 
 ## Key features
 
-- Simple web UI built with Streamlit.
+- Clean web UI built with Flask and HTML/CSS templates.
 - Content-based recommendation using TF–IDF vectors and cosine similarity.
 - Genre weighting to increase the importance of genres in recommendations.
 - Fuzzy matching for user input (uses Python's `difflib`) so small typos still work.
@@ -12,14 +12,15 @@ A small Streamlit-based movie recommender that suggests similar movies by analyz
 ## Built with
 
 - Python
-- Streamlit
+- Flask (web framework)
 - pandas, numpy
 - scikit-learn (TF-IDF, cosine similarity)
 
 ## Files in this repository
 
-- `app.py` — Streamlit app entrypoint.
+- `app.py` — Flask app entrypoint with routing logic.
 - `backend.py` — Recommendation logic (loads `movies.csv`, builds TF-IDF features, computes similarity, exposes `recommend_movies`).
+- `templates/` — HTML templates (e.g., `index.html` for the UI).
 - `movies.csv` — Movie dataset used by the recommender (must be present in the project root).
 - `requirements.txt` — Python dependencies.
 
@@ -38,13 +39,13 @@ python -m venv .ven
 pip install -r requirements.txt
 ```
 
-3. Run the Streamlit app:
+3. Run the Flask app:
 
 ```powershell
-streamlit run app.py
+python app.py
 ```
 
-Open the URL shown in the terminal (usually http://localhost:8501) to use the app.
+Open http://localhost:5000 in your browser to use the app.
 
 ## Using the app
 
@@ -72,7 +73,7 @@ If the app cannot find a close match for your input title, it will show an error
 
 Edge cases handled:
 - Empty input returns an empty list.
-- No close title match returns an empty list (the Streamlit UI shows an error message).
+- No close title match returns an empty list (the Flask UI shows an error message).
 
 ## Dataset
 
@@ -86,7 +87,7 @@ If you replace `movies.csv`, make sure it contains these columns or adjust `back
 
 ## Troubleshooting
 
-- If Streamlit fails to run, ensure your virtual environment is active and dependencies from `requirements.txt` are installed.
+- If Flask fails to run, ensure your virtual environment is active and dependencies from `requirements.txt` are installed.
 - If the app shows no recommendations for a title you expect to find, open `movies.csv` and verify the exact title spelling. The app uses fuzzy matching but it relies on titles present in the dataset.
 
 ## Contributing
