@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request
-from backend import recommend_movies
+from backend import recommend_movies, get_all_titles
 
 app = Flask(__name__)
+
+# Load all titles once, for autocomplete
+ALL_TITLES = get_all_titles()
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -24,6 +28,7 @@ def home():
         movie_name=movie_name,
         recommendations=recommendations,
         error=error,
+        all_titles=ALL_TITLES,  # 👈 pass titles to template
     )
 
 

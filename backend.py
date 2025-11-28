@@ -67,3 +67,8 @@ def recommend_movies(movie_name: str, num_recommendations: int = 10):
                 break
 
     return recommendations
+
+def get_all_titles():
+    """Return a list of all movie titles."""
+    return movies_data["title"].dropna().tolist()
+
