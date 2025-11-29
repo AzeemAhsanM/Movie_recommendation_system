@@ -182,7 +182,7 @@
       // Find up to 8 matching titles
       const matches = ALL_TITLES
         .filter(t => t.toLowerCase().includes(query))
-        .slice(0, 4);
+        .slice(0, 3);
 
       if (matches.length === 0) {
         clearSuggestions();
